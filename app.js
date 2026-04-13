@@ -10,6 +10,8 @@ const PORT = 3000;
 // ============================================================
 // MIDDLEWARES
 // ============================================================
+// Middleware para servir os arquivos estáticos do front-end 
+app.use(express.static('./src/public')); 
 
 // Middleware para processar JSON no body das requisições
 app.use(express.json());
