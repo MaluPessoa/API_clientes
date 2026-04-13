@@ -48,12 +48,8 @@ const criarTabela = async () => {
     id serial primary key,
     nome VARCHAR(50) NOT NULL,
     cpf VARCHAR(14) NOT NULL,
-    telefone VARCHAR(15) NOT NULL,
     email VARCHAR(55) NOT NULL,
-    datanasc DATE NOT NULL,
-    rua VARCHAR(255) NOT NULL,
-    numeroCasa INTEGER NOT NULL,
-    bairro VARCHAR(255) NOT NULL
+    telefone VARCHAR(15) NOT NULL
     )
   `;
 
