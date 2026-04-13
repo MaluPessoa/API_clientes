@@ -235,7 +235,7 @@ function editarCliente(id, nome, cpf, email, telefone) {
 // ========================================
 
 // Busca clientes no backend
-async function buscarClientes(tipo, valor) {
+async function buscarClientes(valor) {
     const loadingMessage = document.getElementById('loadingMessage');
     const emptyMessage = document.getElementById('emptyMessage');
     const clientsList = document.getElementById('clientsList');
@@ -244,7 +244,7 @@ async function buscarClientes(tipo, valor) {
     clientsList.innerHTML = '';
     
     try {
-        const resposta = await fetch(`/clientes/buscar?tipo=${tipo}&valor=${encodeURIComponent(valor)}`);
+        const resposta = await fetch(`/clientes/nome/${encodeURIComponent(valor)}`);
         
         if (!resposta.ok) {
             throw new Error('Erro ao buscar clientes');
