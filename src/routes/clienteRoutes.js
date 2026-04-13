@@ -13,10 +13,10 @@ const clienteController = require('../controllers/clienteController');
 router.get('/', clienteController.listarTodos);
 
 // GET /clientes/nome/:nome - Buscar por nome
-router.get('/nome/:nome', clienteController.buscarPornome);
+router.get('/buscar/nome/:nome', clienteController.buscarPornome);
 
 // GET /clientes/:id - Buscar cliente específico por ID
-router.get('/:id', clienteController.buscarPorId);
+router.get('/buscar/id/:id', clienteController.buscarPorId);
 
 // POST /clientes - Criar novo cliente
 router.post('/', clienteController.criar);

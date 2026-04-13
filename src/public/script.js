@@ -235,24 +235,37 @@ function editarCliente(id, nome, cpf, email, telefone) {
 // ========================================
 
 // Busca clientes no backend
-async function buscarClientes(valor) {
+async function buscarClientes(tipo, valor) {
     const loadingMessage = document.getElementById('loadingMessage');
     const emptyMessage = document.getElementById('emptyMessage');
     const clientsList = document.getElementById('clientsList');
-    
+   
     loadingMessage.style.display = 'block';
     clientsList.innerHTML = '';
-    
+   
     try {
-        const resposta = await fetch(`/clientes/nome/${encodeURIComponent(valor)}`);
-        
+        let url = '';
+
+        if (tipo === 'nome') {
+            url = `/clientes/buscar/nome/${encodeURIComponent(valor)}`;
+        } else if (tipo === 'id') {
+            url = `/clientes/buscar/id/${valor}`;
+        }
+
+        const resposta = await fetch(url);
+       
         if (!resposta.ok) {
             throw new Error('Erro ao buscar clientes');
         }
-        
-        const clientes = await resposta.json();
+       
+        let clientes = await resposta.json();
+
+        if (!Array.isArray(clientes)) {
+            clientes = clientes ? [clientes] : [];
+        }
+
         loadingMessage.style.display = 'none';
-        
+       
         if (clientes.length === 0) {
             emptyMessage.style.display = 'block';
             clientsList.innerHTML = '';
